@@ -17,12 +17,9 @@ public class Main extends Application
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-        Mochila m=new Mochila();
-        //m.cifrar("hola".getBytes());
-        System.out.println(m.decifrar(m.cifrar("hola".getBytes())));
         Parent root = FXMLLoader.load(getClass().getResource("Ventana.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setTitle("Cifrado Mochila de Merkle-Hellman");
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 }

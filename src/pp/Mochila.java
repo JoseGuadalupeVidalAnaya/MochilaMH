@@ -9,7 +9,7 @@ import java.util.Random;
  */
 public class Mochila
 {
-    ArrayList<BigInteger> s,b;
+    ArrayList<BigInteger> s, b;
     BigInteger q, r;
     int inputSize = 640;
 
@@ -26,55 +26,49 @@ public class Mochila
             x = new BigInteger(ran.nextInt(2) + 1 + "").add(sum);
         }
         q = x;
-        System.out.println(q);
-        System.out.println(s);
         do
         {
             r = q.subtract(new BigInteger(ran.nextInt(1000) + ""));
         }
         while ((r.compareTo(new BigInteger("0")) > 0) && (q.gcd(r).intValue() != 1));
-        System.out.println(r);
-        b=new ArrayList<>();
+        b = new ArrayList<>();
         for (int j = 0; j < i; j++)
         {
             b.add(s.get(j).multiply(r).mod(q));
         }
-        System.out.println(b);
     }
 
-    String cifrar(byte []m)
+    String cifrar(byte[] m)
     {
-        setClave(m.length*8);
-        BigInteger mc=new BigInteger("0");
-        byte mask=0x01;
-        System.out.println(mask);
+        setClave(m.length * 8);
+        BigInteger mc = new BigInteger("0");
+        byte mask = 0x01;
         inputSize = m.length * 8;
-        for (int i = 0; i <m.length ; i++)
+        for (int i = 0; i < m.length; i++)
         {
-            for (int j = 0; j <8; j++)
+            for (int j = 0; j < 8; j++)
             {
-                BigInteger v=b.get(i*8+7-j);
-                if((m[i]&(mask<<j))!=0)
-                    mc=mc.add(v);
+                BigInteger v = b.get(i * 8 + 7 - j);
+                if ((m[i] & (mask << j)) != 0)
+                    mc = mc.add(v);
             }
-            mask=0x01;
+            mask = 0x01;
         }
-        System.out.println(mc);
-        return mc+"";
+        return mc + "";
     }
+
     String decifrar(String m)
     {
-        BigInteger mc=new BigInteger(m);
-        BigInteger v=mc.mod(q).multiply(r.modInverse(q)).mod(q);
-        System.out.println(v);
+        BigInteger mc = new BigInteger(m);
+        BigInteger v = mc.mod(q).multiply(r.modInverse(q)).mod(q);
         int[] bitMask = new int[inputSize];
-        for (int i = inputSize-1; v.compareTo(new BigInteger("0"))!=0 ; i--)
+        for (int i = inputSize - 1; v.compareTo(new BigInteger("0")) != 0; i--)
         {
             BigInteger keyValue = s.get(i);
-            if(v.compareTo(keyValue)>=0)
+            if (v.compareTo(keyValue) >= 0)
             {
-                v=v.subtract(keyValue);
-                bitMask[i]=1;
+                v = v.subtract(keyValue);
+                bitMask[i] = 1;
             }
         }
         byte[] decrypted = new byte[bitMask.length / 8];
@@ -88,7 +82,6 @@ public class Mochila
             }
             mask = 0x01;
         }
-
         return new String(decrypted);
     }
 }
