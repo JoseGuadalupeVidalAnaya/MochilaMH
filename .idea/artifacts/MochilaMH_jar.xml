@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="MochilaMH:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MochilaMH_jar</output-path>
+    <root id="archive" name="MochilaMH.jar">
+      <element id="module-output" name="MochilaMH" />
+    </root>
+  </artifact>
+</component>
