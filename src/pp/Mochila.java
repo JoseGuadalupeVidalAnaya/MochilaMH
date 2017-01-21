@@ -52,7 +52,6 @@ public class Mochila
             for (int j = 0; j < 8; j++)
             {
                 BigInteger v = b.get(i * 8 + 7 - j);
-                System.out.println((mask << j)+" "+mask+" "+m[i]+" "+((m[i] & (mask << j)) != 0));
                 if ((m[i] & (mask << j)) != 0)
                     mc = mc.add(v);
             }
