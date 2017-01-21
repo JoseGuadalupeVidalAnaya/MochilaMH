@@ -4,9 +4,6 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Random;
 
-/**
- * Created by jose on 8/01/17.
- */
 public class Mochila
 {
     ArrayList<BigInteger> s, b;
@@ -80,7 +77,6 @@ public class Mochila
         }
         byte[] decrypted = new byte[bitMask.length / 8];
         byte mask = 0x01;
-
         for (int i = 0; i < bitMask.length; i++)
         {
             if (bitMask[i] == 1)
