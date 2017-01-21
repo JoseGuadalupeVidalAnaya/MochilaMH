@@ -18,24 +18,30 @@ public class Mochila
         s = new ArrayList<>();
         BigInteger sum = new BigInteger("0");
         Random ran = new Random();
-        BigInteger x = new BigInteger(ran.nextInt(2) + 1 + "");
+        BigInteger x = new BigInteger(  "1");
         for (int j = 0; j < i; j++)
         {
             s.add(x);
             sum = sum.add(x);
-            x = new BigInteger(ran.nextInt(2) + 1 + "").add(sum);
+            x = new BigInteger( "1").add(sum);
         }
+        System.out.println("Mochila: "+s);
         q = x;
+        System.out.println("q: "+q);
+        int y=1000;
         do
         {
-            r = q.subtract(new BigInteger(ran.nextInt(1000) + ""));
+            r = q.subtract(new BigInteger(y + ""));
+            y++;
         }
         while ((r.compareTo(new BigInteger("0")) > 0) && (q.gcd(r).intValue() != 1));
+        System.out.println("r: "+r);
         b = new ArrayList<>();
         for (int j = 0; j < i; j++)
         {
             b.add(s.get(j).multiply(r).mod(q));
         }
+        System.out.println("b: "+b);
     }
 
     String cifrar(byte[] m)
@@ -49,6 +55,7 @@ public class Mochila
             for (int j = 0; j < 8; j++)
             {
                 BigInteger v = b.get(i * 8 + 7 - j);
+                System.out.println((mask << j)+" "+mask+" "+m[i]+" "+((m[i] & (mask << j)) != 0));
                 if ((m[i] & (mask << j)) != 0)
                     mc = mc.add(v);
             }
